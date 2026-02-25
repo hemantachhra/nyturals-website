@@ -1,62 +1,171 @@
-<!-- FORCE DEPLOY V2 -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Nyturals | Legacy since 1925</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+:root
+{
+--bg:#0a0a0a;
+--soft:#111111;
+--gold:#c6a96b;
+--text:#e8e8e8;
+--muted:#8a8a8a;
+--line:#1c1c1c;
+}
+
+*{
+box-sizing:border-box;
+}
+
+body
+{
 margin:0;
-font-family:Segoe UI;
-background:black;
-color:white;
+background:var(--bg);
+color:var(--text);
+font-family:Inter;
 }
 
-header{
-padding:40px;
-text-align:center;
-border-bottom:1px solid #222;
-}
-
-header h1{
-color:#d4af37;
-font-size:48px;
-margin:0;
-}
-
-nav{
-text-align:center;
-padding:15px;
-border-bottom:1px solid #222;
-}
-
-nav a{
-color:#d4af37;
-margin:15px;
-text-decoration:none;
-font-size:18px;
-}
-
-section{
-padding:60px;
-max-width:1000px;
+.container
+{
+max-width:1200px;
 margin:auto;
+padding:0 40px;
 }
 
-.card{
-background:#111;
-padding:30px;
+header
+{
+position:fixed;
+width:100%;
+top:0;
+background:rgba(10,10,10,0.6);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--line);
+z-index:1000;
+}
+
+.nav
+{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:22px 0;
+}
+
+.logo
+{
+font-family:Playfair Display;
+font-size:26px;
+letter-spacing:3px;
+color:var(--gold);
+}
+
+.nav-links a
+{
+margin-left:40px;
+text-decoration:none;
+color:var(--muted);
+font-size:14px;
+letter-spacing:1px;
+}
+
+.nav-links a:hover
+{
+color:var(--gold);
+}
+
+.hero
+{
+height:100vh;
+display:flex;
+align-items:center;
+}
+
+.hero h1
+{
+font-family:Playfair Display;
+font-size:64px;
+font-weight:500;
+line-height:1.2;
+max-width:700px;
+}
+
+.hero p
+{
 margin-top:20px;
-border-radius:10px;
+color:var(--muted);
+font-size:18px;
+max-width:500px;
 }
 
-footer{
-text-align:center;
-padding:30px;
-border-top:1px solid #222;
-color:gray;
+.section
+{
+padding:140px 0;
+border-top:1px solid var(--line);
+}
+
+.section-title
+{
+font-family:Playfair Display;
+font-size:36px;
+margin-bottom:30px;
+}
+
+.section-text
+{
+color:var(--muted);
+font-size:17px;
+line-height:1.8;
+max-width:700px;
+}
+
+.grid
+{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:60px;
+margin-top:60px;
+}
+
+.card
+{
+background:var(--soft);
+padding:40px;
+border:1px solid var(--line);
+}
+
+.card h3
+{
+font-family:Playfair Display;
+color:var(--gold);
+margin-bottom:15px;
+}
+
+footer
+{
+padding:60px 0;
+border-top:1px solid var(--line);
+color:var(--muted);
+font-size:14px;
+}
+
+.whatsapp
+{
+position:fixed;
+bottom:30px;
+right:30px;
+background:var(--gold);
+color:black;
+padding:14px 24px;
+text-decoration:none;
+font-size:14px;
+letter-spacing:1px;
 }
 
 </style>
@@ -66,41 +175,124 @@ color:gray;
 <body>
 
 <header>
+<div class="container nav">
 
-<h1>NYTURALS</h1>
+<div class="logo">
+NYTURALS
+</div>
 
-<p>Legacy since 1925 | Where Nature Meets Luxury</p>
+<div class="nav-links">
+<a href="about.html">ABOUT</a>
+<a href="brands.html">BRANDS</a>
+<a href="products.html">PRODUCTS</a>
+<a href="services.html">SERVICES</a>
+<a href="contact.html">CONTACT</a>
+</div>
 
+</div>
 </header>
 
-<nav>
+<div class="container hero">
 
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="brands.html">Brands</a>
-<a href="products.html">Products</a>
-<a href="services.html">Services</a>
-<a href="contact.html">Contact</a>
+<div>
 
-</nav>
+<h1>
+Advanced Soap Base Engineering & Luxury Cosmetic Formulation
+</h1>
 
-<section>
-
-<h2>Advanced Soap & Cosmetic Formulations</h2>
-
-<div class="card">
-
-Transparent soap bases, syndet bars, luxury cosmetic formulations, and private label manufacturing backed by century-old business legacy.
+<p>
+Transparent soap bases, syndet innovation, and private label manufacturing backed by a business legacy established in 1925.
+</p>
 
 </div>
 
-</section>
+</div>
+
+<div class="container section">
+
+<div class="section-title">
+Legacy and Authority
+</div>
+
+<div class="section-text">
+
+Nyturals emerges from Dharamdas Tirathdas & Co., established in 1925. This inherited foundation of discipline, trust, and manufacturing experience now extends into modern cosmetic formulation and soap base engineering.
+
+</div>
+
+</div>
+
+<div class="container section">
+
+<div class="section-title">
+Core Expertise
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Transparent Soap Bases</h3>
+
+Crystal-clear, high-performance soap bases engineered for luxury positioning and superior performance.
+
+</div>
+
+<div class="card">
+
+<h3>Syndet Bars</h3>
+
+Advanced cleansing systems developed for face, body, and hair applications with optimized skin compatibility.
+
+</div>
+
+<div class="card">
+
+<h3>Private Label Manufacturing</h3>
+
+Complete third-party production, allowing brands to launch premium products with full technical backing.
+
+</div>
+
+<div class="card">
+
+<h3>Consultancy and Setup</h3>
+
+Professional consultancy for soap manufacturing setup and transparent soap base production from scratch.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="container section">
+
+<div class="section-title">
+Hero Product
+</div>
+
+<div class="section-text">
+
+Organic Fruit Scrub designed for deep exfoliation, skin renewal, and restoration of natural radiance using advanced botanical and mineral systems.
+
+</div>
+
+</div>
 
 <footer>
 
-© Nyturals | Established legacy 1925
+<div class="container">
+
+Nyturals © Legacy since 1925
+
+</div>
 
 </footer>
+
+<a class="whatsapp" href="#">
+WhatsApp
+</a>
 
 </body>
 </html>
