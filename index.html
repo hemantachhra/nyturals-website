@@ -13,23 +13,35 @@
 <body>
 
 <header class="nav">
+
 <div class="nav-inner">
-<div class="logo">NYTURALS</div>
+
+<a href="about.html" class="logo">NYTURALS</a>
+
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
 </div>
 
 <div class="menu-panel" id="menuPanel">
+
 <a href="index.html">Home</a>
+
 <a href="products.html">Products</a>
+
 <a href="about.html">About</a>
+
 <a href="brands.html">Brands</a>
+
 <a href="contact.html">Contact</a>
+
 </div>
+
 </header>
+
 
 <!-- HERO -->
 
-<section class="hero glide-panel clickable" data-target="products.html">
+<section class="hero">
 
 <div class="hero-bg"></div>
 
@@ -41,61 +53,74 @@
 
 </div>
 
-<div class="scroll-arrow">↓</div>
+<div class="scroll-down" onclick="scrollNext()">↓</div>
 
 </section>
 
-<!-- HAIR BAR -->
 
-<section class="panel glide-panel clickable" data-target="products.html#hair">
+<!-- HAIR -->
+
+<section class="panel">
 
 <div class="panel-bg hair-bg"></div>
 
-<div class="panel-card">
+<div class="panel-card clickable-box" data-target="products.html#hair">
 
 <h2>Hair Syndet Bar</h2>
 
-<p>Herbal cleansing ritual.</p>
+<p>Herbal cleansing ritual</p>
 
 </div>
 
+<div class="scroll-up" onclick="scrollPrev()">↑</div>
+
+<div class="scroll-down" onclick="scrollNext()">↓</div>
+
 </section>
 
-<!-- BODY BAR -->
 
-<section class="panel glide-panel clickable" data-target="products.html#body">
+<!-- BODY -->
+
+<section class="panel">
 
 <div class="panel-bg body-bg"></div>
 
-<div class="panel-card">
+<div class="panel-card clickable-box" data-target="products.html#body">
 
 <h2>Body Syndet Bar</h2>
 
-<p>Pure cleansing experience.</p>
+<p>Pure cleansing experience</p>
 
 </div>
 
+<div class="scroll-up" onclick="scrollPrev()">↑</div>
+
+<div class="scroll-down" onclick="scrollNext()">↓</div>
+
 </section>
 
-<!-- FACE BAR -->
 
-<section class="panel glide-panel clickable" data-target="products.html#face">
+<!-- FACE -->
+
+<section class="panel">
 
 <div class="panel-bg face-bg"></div>
 
-<div class="panel-card">
+<div class="panel-card clickable-box" data-target="products.html#face">
 
 <h2>Face Syndet Bar</h2>
 
-<p>Precision skin cleansing.</p>
+<p>Precision skin cleansing</p>
 
 </div>
 
+<div class="scroll-up" onclick="scrollPrev()">↑</div>
+
 </section>
 
-<!-- WHATSAPP -->
 
-<a href="#" class="whatsapp">WhatsApp</a>
+<a href="https://wa.me/919971879595" class="whatsapp">WhatsApp</a>
+
 
 <script src="script.js"></script>
 
