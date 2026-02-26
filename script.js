@@ -1,69 +1,53 @@
-// MENU
+// MENU TOGGLE
 
 function toggleMenu(){
 
 let panel=document.getElementById("menuPanel");
 
 panel.style.display=
+
 panel.style.display==="flex"?"none":"flex";
 
 }
 
-// CLICK NAVIGATION
 
-document.querySelectorAll(".clickable").forEach(el=>{
+// CLICK ONLY BOXES
 
-el.addEventListener("click",()=>{
+document.querySelectorAll(".clickable-box").forEach(box=>{
 
-window.location=el.dataset.target;
+box.addEventListener("click",e=>{
 
-});
+e.stopPropagation();
 
-});
-
-// GLIDE EFFECT
-
-window.addEventListener("scroll",()=>{
-
-let scrolled=window.scrollY;
-
-document.querySelectorAll(".panel-card").forEach(card=>{
-
-card.style.transform=
-`translateY(${scrolled * -0.15}px)`;
+window.location=box.dataset.target;
 
 });
 
 });
 
-// AUTO SCROLL
 
-let autoScroll;
+// SCROLL FUNCTIONS
 
-function startAuto(){
-
-autoScroll=setTimeout(()=>{
+function scrollNext(){
 
 window.scrollBy({
+
 top:window.innerHeight,
+
 behavior:"smooth"
-});
-
-},5000);
-
-}
-
-function stopAuto(){
-
-clearTimeout(autoScroll);
-
-}
-
-["scroll","touchstart","keydown","wheel"]
-.forEach(evt=>{
-
-window.addEventListener(evt,stopAuto);
 
 });
 
-startAuto();
+}
+
+function scrollPrev(){
+
+window.scrollBy({
+
+top:-window.innerHeight,
+
+behavior:"smooth"
+
+});
+
+}
