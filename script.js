@@ -1,146 +1,69 @@
-// ===== SECTION SNAP SYSTEM =====
+const sections=document.querySelectorAll(".section");
+let index=0;
+let direction=1;
+let autoTimer;
+let paused=false;
 
-const sections = document.querySelectorAll("section");
-
-let currentIndex = 0;
-let autoTimer = null;
-let autoDirection = 1;
-let userInteracted = false;
-
-// Scroll to exact section
-function scrollToSection(index) {
-
-if(index < 0) index = 0;
-if(index >= sections.length) index = sections.length - 1;
-
-currentIndex = index;
-
-sections[currentIndex].scrollIntoView({
-behavior: "smooth",
-block: "start"
+function scrollTo(i){
+if(i<0||i>=sections.length)return;
+index=i;
+sections[index].scrollIntoView({
+behavior:"smooth",
+block:"start"
 });
-
 }
 
-// Scroll next
-function scrollNext() {
+function scrollNext(){scrollTo(index+1)}
+function scrollPrev(){scrollTo(index-1)}
 
-scrollToSection(currentIndex + 1);
-
-}
-
-// Scroll previous
-function scrollPrev() {
-
-scrollToSection(currentIndex - 1);
-
-}
-
-
-// ===== CLICKABLE BOXES ONLY =====
-
-document.querySelectorAll(".clickable-box").forEach(box => {
-
-box.addEventListener("click", function(e){
-
+document.querySelectorAll(".clickable-box").forEach(box=>{
+box.onclick=e=>{
 e.stopPropagation();
-
-window.location = this.dataset.target;
-
+window.location=box.dataset.target;
+};
 });
-
-});
-
-
-// ===== MENU TOGGLE FIX =====
 
 function toggleMenu(){
-
-const panel = document.getElementById("menuPanel");
-
-panel.style.display =
-(panel.style.display === "flex") ? "none" : "flex";
-
+const panel=document.getElementById("menuPanel");
+panel.style.display=
+panel.style.display==="flex"?"none":"flex";
 }
-
-
-// ===== AUTO OSCILLATION SYSTEM =====
 
 function autoScroll(){
+if(paused)return;
 
-if(userInteracted) return;
+let next=index+direction;
 
-let nextIndex = currentIndex + autoDirection;
-
-// reverse at bottom
-if(nextIndex >= sections.length){
-
-autoDirection = -1;
-nextIndex = sections.length - 2;
-
+if(next>=sections.length){
+direction=-1;
+next=index-1;
 }
 
-// reverse at top
-if(nextIndex < 0){
-
-autoDirection = 1;
-nextIndex = 1;
-
+if(next<0){
+direction=1;
+next=index+1;
 }
 
-scrollToSection(nextIndex);
-
+scrollTo(next);
 }
 
-
-// start oscillation after idle
 function startAuto(){
-
-clearInterval(autoTimer);
-
-autoTimer = setInterval(autoScroll, 3500);
-
+autoTimer=setInterval(autoScroll,4800);
 }
 
-
-// stop on manual interaction
 function stopAuto(){
-
-userInteracted = true;
+paused=true;
 clearInterval(autoTimer);
-
 }
 
-
-// detect interaction
-["wheel","touchstart","mousedown","keydown"].forEach(event => {
-
-window.addEventListener(event, stopAuto, {passive:true});
-
-});
-
-
-// detect section currently visible
-window.addEventListener("scroll", () => {
-
-let scrollPosition = window.scrollY;
-
-sections.forEach((section, index) => {
-
-let top = section.offsetTop;
-let height = section.offsetHeight;
-
-if(scrollPosition >= top - height/2 &&
-scrollPosition < top + height/2){
-
-currentIndex = index;
-
+function resumeAuto(){
+paused=false;
+startAuto();
 }
 
+document.body.addEventListener("mouseenter",stopAuto);
+document.body.addEventListener("mouseleave",()=>{
+setTimeout(resumeAuto,3000);
 });
 
-});
-
-
-// start auto after 3 seconds idle
-setTimeout(startAuto, 3000);
+setTimeout(startAuto,3000);
