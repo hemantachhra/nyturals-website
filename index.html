@@ -6,123 +6,60 @@
 <title>Nyturals — Where Nature Meets Luxury</title>
 
 <link rel="stylesheet" href="styles.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header class="nav">
-
 <div class="nav-inner">
-
 <a href="about.html" class="logo">NYTURALS</a>
-
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
 </div>
 
-<div class="menu-panel" id="menuPanel">
-
+<div id="menuPanel" class="menu-panel">
 <a href="index.html">Home</a>
-
 <a href="products.html">Products</a>
-
-<a href="about.html">About</a>
-
 <a href="brands.html">Brands</a>
-
+<a href="services.html">Services</a>
 <a href="contact.html">Contact</a>
-
 </div>
-
 </header>
 
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="hero-bg"></div>
-
+<section class="hero section">
+<div class="hero-overlay"></div>
 <div class="hero-content">
-
-<h1>Nyturals</h1>
-
-<p>Where Nature Meets Luxury</p>
-
+<h1 class="hero-title">Nyturals</h1>
+<p class="hero-sub">Where Nature Meets Luxury</p>
 </div>
-
-<div class="scroll-down" onclick="scrollNext()">↓</div>
-
 </section>
 
-
-<!-- HAIR -->
-
-<section class="panel">
-
-<div class="panel-bg hair-bg"></div>
-
+<section class="section">
 <div class="panel-card clickable-box" data-target="products.html#hair">
-
 <h2>Hair Syndet Bar</h2>
-
 <p>Herbal cleansing ritual</p>
-
 </div>
-
-<div class="scroll-up" onclick="scrollPrev()">↑</div>
-
-<div class="scroll-down" onclick="scrollNext()">↓</div>
-
 </section>
 
-
-<!-- BODY -->
-
-<section class="panel">
-
-<div class="panel-bg body-bg"></div>
-
+<section class="section">
 <div class="panel-card clickable-box" data-target="products.html#body">
-
 <h2>Body Syndet Bar</h2>
-
 <p>Pure cleansing experience</p>
-
 </div>
+</section>
+
+<section class="section">
+<div class="panel-card clickable-box" data-target="products.html#face">
+<h2>Face Syndet Bar</h2>
+<p>Precision skin cleansing</p>
+</div>
+</section>
 
 <div class="scroll-up" onclick="scrollPrev()">↑</div>
-
 <div class="scroll-down" onclick="scrollNext()">↓</div>
 
-</section>
-
-
-<!-- FACE -->
-
-<section class="panel">
-
-<div class="panel-bg face-bg"></div>
-
-<div class="panel-card clickable-box" data-target="products.html#face">
-
-<h2>Face Syndet Bar</h2>
-
-<p>Precision skin cleansing</p>
-
-</div>
-
-<div class="scroll-up" onclick="scrollPrev()">↑</div>
-
-</section>
-
-
-<a href="https://wa.me/919971879595" class="whatsapp">WhatsApp</a>
-
+<a class="whatsapp" href="https://wa.me/919971879595">WhatsApp</a>
 
 <script src="script.js"></script>
-
 </body>
 </html>
