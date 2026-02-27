@@ -165,53 +165,69 @@ margin:20px;
 </section>
 
 <section class="section">
+/* =========================
+   CINEMATIC AUTO GLIDE
+   (STABLE — FREEZE SAFE)
+========================= */
 
-<div class="section-bg"
-style="background-image:url('https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=2000')">
-</div>
+let autoRunning = false;
+let direction = 1;
+let idleTimer = null;
+let lastTime = 0;
 
-<div class="card glide">
-<h2>Hair Syndet Bar</h2>
-<p>Herbal cleansing ritual.</p>
-</div>
+/* cinematic speed */
+const SPEED = 22; // pixels per second
 
-</section>
+function autoGlide(timestamp){
 
-<section class="section">
+if(!autoRunning) return;
 
-<div class="section-bg"
-style="background-image:url('https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=2000')">
-</div>
+if(!lastTime) lastTime = timestamp;
 
-<div class="card glide">
-<h2>Body Syndet Bar</h2>
-<p>Pure cleansing experience.</p>
-</div>
+const delta = (timestamp - lastTime) / 1000;
+lastTime = timestamp;
 
-</section>
+/* smooth motion */
+window.scrollBy(0, direction * SPEED * delta);
 
-<section class="section">
+/* reverse smoothly at limits */
+if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 5){
+direction = -1;
+}
 
-<div class="section-bg"
-style="background-image:url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=2000')">
-</div>
+if(window.scrollY <= 5){
+direction = 1;
+}
 
-<div class="card glide">
-<h2>Face Syndet Bar</h2>
-<p>Precision skin cleansing.</p>
-</div>
+requestAnimationFrame(autoGlide);
+}
 
-</section>
+function startAuto(){
+autoRunning = true;
+lastTime = 0;
+requestAnimationFrame(autoGlide);
+}
 
-<script>
+function stopAuto(){
 
-window.addEventListener("scroll", function(){
+autoRunning = false;
 
-let scrolled = window.scrollY;
+clearTimeout(idleTimer);
 
-document.querySelectorAll(".glide").forEach(function(el){
+/* restart after idle */
+idleTimer = setTimeout(startAuto,3000);
+}
 
-let speed = 0.15;
+/* first start */
+idleTimer = setTimeout(startAuto,3000);
+
+/* user interaction cancels immediately */
+["wheel","touchstart","mousedown","keydown","scroll"]
+.forEach(evt=>{
+window.addEventListener(evt,stopAuto,{passive:true});
+});
+   
+   let speed = 0.15;
 
 el.style.transform =
 "translateY(" + (scrolled * -speed) + "px)";
