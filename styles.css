@@ -32,7 +32,7 @@ text-decoration:none;
 font-size:24px;
 }
 
-/* HERO (FROZEN) */
+/* HERO — FROZEN */
 
 .hero{
 height:100vh;
@@ -41,6 +41,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
+position:relative;
 }
 
 .hero-overlay{
@@ -50,13 +51,7 @@ height:100%;
 background:rgba(0,0,0,.45);
 }
 
-.hero-title{
-font-family:'Playfair Display',serif;
-font-size:64px;
-color:#d4b06a;
-}
-
-/* SECTIONS */
+/* GLOBAL CINEMATIC BACKGROUND (FIX FOR BLACK PAGES) */
 
 .section{
 min-height:100vh;
@@ -64,22 +59,26 @@ display:flex;
 align-items:center;
 justify-content:center;
 padding:120px 20px;
+background:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),
+url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600")
+center/cover fixed no-repeat;
 }
 
 /* CARD */
 
 .panel-card{
-background:rgba(0,0,0,.65);
-backdrop-filter:blur(8px);
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);
 padding:40px;
 border:1px solid rgba(212,176,106,.35);
 max-width:600px;
 width:90%;
-transition:transform .35s ease;
+transition:transform .4s ease;
 }
 
 .panel-card:hover{
-transform:translateY(-8px);
+transform:translateY(-6px);
 }
 
 /* ARROWS */
