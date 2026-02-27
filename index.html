@@ -221,62 +221,64 @@ el.style.transform =
 });
 /* =========================
    CINEMATIC AUTO GLIDE
-   (NON-DESTRUCTIVE OVERLAY)
+   (STABLE + GENTLE)
 ========================= */
 
-let autoActive = false;
-let autoDirection = 1;
-let idleTimer;
-let autoFrame;
+let autoRunning = false;
+let direction = 1;
+let idleTimer = null;
+let lastTime = 0;
 
-/* gentle motion speed */
-const SPEED = 0.15;   // extremely slow
+const SPEED = 18;   // pixels per second (cinematic slow)
 
-function startAutoGlide(){
+function autoGlide(timestamp){
 
-autoActive = true;
+if(!autoRunning) return;
 
-function glide(){
+if(!lastTime) lastTime = timestamp;
 
-if(!autoActive) return;
+const delta = (timestamp - lastTime) / 1000;
+lastTime = timestamp;
 
-window.scrollBy(0, autoDirection * SPEED);
+/* smooth movement */
+window.scrollBy(0, direction * SPEED * delta);
 
-/* reverse at limits */
-if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 2){
-autoDirection = -1;
+/* reverse softly at edges */
+if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 5){
+direction = -1;
 }
 
-if(window.scrollY <= 2){
-autoDirection = 1;
+if(window.scrollY <= 5){
+direction = 1;
 }
 
-autoFrame = requestAnimationFrame(glide);
+requestAnimationFrame(autoGlide);
 }
 
-glide();
+function startAuto(){
+autoRunning = true;
+lastTime = 0;
+requestAnimationFrame(autoGlide);
 }
 
-function stopAutoGlide(){
+function stopAuto(){
 
-autoActive = false;
-cancelAnimationFrame(autoFrame);
+autoRunning = false;
 
 clearTimeout(idleTimer);
 
 /* restart after 3s idle */
-idleTimer = setTimeout(startAutoGlide,3000);
+idleTimer = setTimeout(startAuto,3000);
 }
 
-/* start first time */
-idleTimer = setTimeout(startAutoGlide,3000);
+/* initial start delay */
+idleTimer = setTimeout(startAuto,3000);
 
-/* ANY interaction stops immediately */
-["wheel","touchstart","mousemove","keydown","mousedown"]
+/* ANY interaction pauses instantly */
+["wheel","touchstart","mousedown","keydown","scroll"]
 .forEach(evt=>{
-window.addEventListener(evt,stopAutoGlide,{passive:true});
-});
-</script>
+window.addEventListener(evt,stopAuto,{passive:true});
+});</script>
 
 </body>
 </html>
