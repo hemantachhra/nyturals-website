@@ -219,7 +219,63 @@ el.style.transform =
 });
 
 });
+/* =========================
+   CINEMATIC AUTO GLIDE
+   (NON-DESTRUCTIVE OVERLAY)
+========================= */
 
+let autoActive = false;
+let autoDirection = 1;
+let idleTimer;
+let autoFrame;
+
+/* gentle motion speed */
+const SPEED = 0.15;   // extremely slow
+
+function startAutoGlide(){
+
+autoActive = true;
+
+function glide(){
+
+if(!autoActive) return;
+
+window.scrollBy(0, autoDirection * SPEED);
+
+/* reverse at limits */
+if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 2){
+autoDirection = -1;
+}
+
+if(window.scrollY <= 2){
+autoDirection = 1;
+}
+
+autoFrame = requestAnimationFrame(glide);
+}
+
+glide();
+}
+
+function stopAutoGlide(){
+
+autoActive = false;
+cancelAnimationFrame(autoFrame);
+
+clearTimeout(idleTimer);
+
+/* restart after 3s idle */
+idleTimer = setTimeout(startAutoGlide,3000);
+}
+
+/* start first time */
+idleTimer = setTimeout(startAutoGlide,3000);
+
+/* ANY interaction stops immediately */
+["wheel","touchstart","mousemove","keydown","mousedown"]
+.forEach(evt=>{
+window.addEventListener(evt,stopAutoGlide,{passive:true});
+});
 </script>
 
 </body>
