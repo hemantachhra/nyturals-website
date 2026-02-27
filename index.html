@@ -17,9 +17,7 @@
 --muted:#bbbbbb;
 }
 
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
 margin:0;
@@ -47,9 +45,7 @@ background:url("https://images.unsplash.com/photo-1612817288484-6f916006741a?q=8
 z-index:-1;
 }
 
-.hero-content{
-max-width:600px;
-}
+.hero-content{max-width:600px;}
 
 .hero h1{
 font-family:Playfair Display;
@@ -102,19 +98,12 @@ z-index:-1;
 }
 
 .card{
-
 background:rgba(0,0,0,0.6);
-
 padding:40px;
-
 max-width:400px;
-
 backdrop-filter:blur(10px);
-
 transform:translateY(0);
-
 transition:transform 0.2s linear;
-
 }
 
 .card h2{
@@ -123,27 +112,14 @@ color:var(--gold);
 margin:0;
 }
 
-.card p{
-color:var(--muted);
-}
-
-/* MOBILE */
+.card p{color:var(--muted);}
 
 @media(max-width:768px){
-
-.hero{
-justify-content:center;
-text-align:center;
-}
-
-.card{
-margin:20px;
-}
-
+.hero{justify-content:center;text-align:center;}
+.card{margin:20px;}
 }
 
 </style>
-
 </head>
 
 <body>
@@ -151,83 +127,50 @@ margin:20px;
 <div class="hero-bg"></div>
 
 <section class="hero">
-
 <div class="hero-content">
-
 <h1>Nyturals</h1>
-
 <p>Luxury Cosmetic Engineering</p>
-
 </div>
-
 <div class="scroll-arrow">↓</div>
-
 </section>
 
 <section class="section">
-/* =========================
-   CINEMATIC AUTO GLIDE
-   (STABLE — FREEZE SAFE)
-========================= */
+<div class="section-bg"
+style="background-image:url('https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=2000')"></div>
+<div class="card glide">
+<h2>Hair Syndet Bar</h2>
+<p>Herbal cleansing ritual.</p>
+</div>
+</section>
 
-let autoRunning = false;
-let direction = 1;
-let idleTimer = null;
-let lastTime = 0;
+<section class="section">
+<div class="section-bg"
+style="background-image:url('https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=2000')"></div>
+<div class="card glide">
+<h2>Body Syndet Bar</h2>
+<p>Pure cleansing experience.</p>
+</div>
+</section>
 
-/* cinematic speed */
-const SPEED = 22; // pixels per second
+<section class="section">
+<div class="section-bg"
+style="background-image:url('https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=2000')"></div>
+<div class="card glide">
+<h2>Face Syndet Bar</h2>
+<p>Precision skin cleansing.</p>
+</div>
+</section>
 
-function autoGlide(timestamp){
+<script>
 
-if(!autoRunning) return;
+/* FOREGROUND GLIDE (UNCHANGED — FROZEN) */
+window.addEventListener("scroll", function(){
 
-if(!lastTime) lastTime = timestamp;
+let scrolled = window.scrollY;
 
-const delta = (timestamp - lastTime) / 1000;
-lastTime = timestamp;
+document.querySelectorAll(".glide").forEach(function(el){
 
-/* smooth motion */
-window.scrollBy(0, direction * SPEED * delta);
-
-/* reverse smoothly at limits */
-if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 5){
-direction = -1;
-}
-
-if(window.scrollY <= 5){
-direction = 1;
-}
-
-requestAnimationFrame(autoGlide);
-}
-
-function startAuto(){
-autoRunning = true;
-lastTime = 0;
-requestAnimationFrame(autoGlide);
-}
-
-function stopAuto(){
-
-autoRunning = false;
-
-clearTimeout(idleTimer);
-
-/* restart after idle */
-idleTimer = setTimeout(startAuto,3000);
-}
-
-/* first start */
-idleTimer = setTimeout(startAuto,3000);
-
-/* user interaction cancels immediately */
-["wheel","touchstart","mousedown","keydown","scroll"]
-.forEach(evt=>{
-window.addEventListener(evt,stopAuto,{passive:true});
-});
-   
-   let speed = 0.15;
+let speed = 0.15;
 
 el.style.transform =
 "translateY(" + (scrolled * -speed) + "px)";
@@ -235,66 +178,56 @@ el.style.transform =
 });
 
 });
-/* =========================
-   CINEMATIC AUTO GLIDE
-   (STABLE + GENTLE)
-========================= */
 
-let autoRunning = false;
-let direction = 1;
-let idleTimer = null;
-let lastTime = 0;
+/* CINEMATIC AUTO GLIDE */
 
-const SPEED = 18;   // pixels per second (cinematic slow)
+let autoRunning=false;
+let direction=1;
+let idleTimer=null;
+let lastTime=0;
+
+const SPEED=18; // gentle cinematic speed
 
 function autoGlide(timestamp){
 
 if(!autoRunning) return;
 
-if(!lastTime) lastTime = timestamp;
+if(!lastTime) lastTime=timestamp;
 
-const delta = (timestamp - lastTime) / 1000;
-lastTime = timestamp;
+const delta=(timestamp-lastTime)/1000;
+lastTime=timestamp;
 
-/* smooth movement */
-window.scrollBy(0, direction * SPEED * delta);
+window.scrollBy(0,direction*SPEED*delta);
 
-/* reverse softly at edges */
-if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 5){
-direction = -1;
-}
+if(window.innerHeight+window.scrollY>=document.body.scrollHeight-5)
+direction=-1;
 
-if(window.scrollY <= 5){
-direction = 1;
-}
+if(window.scrollY<=5)
+direction=1;
 
 requestAnimationFrame(autoGlide);
 }
 
 function startAuto(){
-autoRunning = true;
-lastTime = 0;
+autoRunning=true;
+lastTime=0;
 requestAnimationFrame(autoGlide);
 }
 
 function stopAuto(){
-
-autoRunning = false;
-
+autoRunning=false;
 clearTimeout(idleTimer);
-
-/* restart after 3s idle */
-idleTimer = setTimeout(startAuto,3000);
+idleTimer=setTimeout(startAuto,3000);
 }
 
-/* initial start delay */
-idleTimer = setTimeout(startAuto,3000);
+idleTimer=setTimeout(startAuto,3000);
 
-/* ANY interaction pauses instantly */
 ["wheel","touchstart","mousedown","keydown","scroll"]
 .forEach(evt=>{
 window.addEventListener(evt,stopAuto,{passive:true});
-});</script>
+});
+
+</script>
 
 </body>
 </html>
