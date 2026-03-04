@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nyturals</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
@@ -11,7 +10,6 @@
 <style>
 
 :root{
---black:#0a0a0a;
 --gold:#d4b06a;
 --muted:#bbbbbb;
 }
@@ -39,26 +37,21 @@ padding:40px;
 .hero-bg{
 position:fixed;
 width:100%;
-height:110vh;
+height:100vh;
 background:url("images/hero.jpg") center/cover no-repeat;
 z-index:-1;
-transform:scale(1.05);
-transition:transform .6s ease-out;
 }
-
-.hero-content{max-width:600px}
 
 .hero h1{
 font-family:Playfair Display;
 font-size:clamp(42px,8vw,80px);
-margin:0;
 color:var(--gold);
+margin:0;
 }
 
 .hero p{
-font-size:18px;
-margin-top:10px;
 color:var(--muted);
+margin-top:10px;
 }
 
 /* SCROLL ARROW */
@@ -78,18 +71,18 @@ opacity:.7;
 50%{transform:translate(-50%,10px)}
 }
 
-/* SECTIONS */
+/* SECTION */
 
 .section{
 height:120vh;
-position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
+position:relative;
 border-top:1px solid rgba(212,176,106,.15);
 }
 
-/* PARALLAX BACKGROUND */
+/* BACKGROUND */
 
 .section-bg{
 position:absolute;
@@ -98,27 +91,24 @@ height:100%;
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
-transform:scale(1.1);
 z-index:-1;
 }
 
-/* CINEMATIC OVERLAY */
+/* OVERLAY */
 
 .section-bg::after{
 content:"";
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:linear-gradient(
 to bottom,
-rgba(0,0,0,.45),
+rgba(0,0,0,.35),
 rgba(0,0,0,.65)
 );
 }
 
-/* GLASS CARD */
+/* CARD */
 
 .card{
 background:rgba(0,0,0,.55);
@@ -127,7 +117,7 @@ max-width:420px;
 backdrop-filter:blur(12px);
 
 box-shadow:
-0 20px 60px rgba(0,0,0,.6),
+0 30px 80px rgba(0,0,0,.6),
 0 0 0 1px rgba(212,176,106,.15);
 
 transform:translateY(0);
@@ -142,47 +132,16 @@ margin:0;
 
 .card p{color:var(--muted)}
 
-/* CINEMATIC REVEAL */
-
-.reveal{
-opacity:0;
-transform:translateY(80px);
-transition:
-opacity 1.2s ease,
-transform 1.2s cubic-bezier(.22,1,.36,1);
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero{
-justify-content:center;
-text-align:center;
-}
-
-.card{
-margin:20px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
 <div class="hero-bg"></div>
 
-<section class="hero reveal">
+<section class="hero">
 
-<div class="hero-content">
+<div>
 <h1>Nyturals</h1>
 <p>Luxury Cosmetic Engineering</p>
 </div>
@@ -191,11 +150,9 @@ margin:20px;
 
 </section>
 
-<section class="section reveal">
+<section class="section">
 
-<div class="section-bg"
-style="background-image:url('images/hair.jpg')">
-</div>
+<div class="section-bg" style="background-image:url('images/hair.jpg')"></div>
 
 <div class="card glide">
 <h2>Hair Syndet Bar</h2>
@@ -204,11 +161,9 @@ style="background-image:url('images/hair.jpg')">
 
 </section>
 
-<section class="section reveal">
+<section class="section">
 
-<div class="section-bg"
-style="background-image:url('images/body.jpg')">
-</div>
+<div class="section-bg" style="background-image:url('images/body.jpg')"></div>
 
 <div class="card glide">
 <h2>Body Syndet Bar</h2>
@@ -217,11 +172,9 @@ style="background-image:url('images/body.jpg')">
 
 </section>
 
-<section class="section reveal">
+<section class="section">
 
-<div class="section-bg"
-style="background-image:url('images/face.jpg')">
-</div>
+<div class="section-bg" style="background-image:url('images/face.jpg')"></div>
 
 <div class="card glide">
 <h2>Face Syndet Bar</h2>
@@ -232,15 +185,13 @@ style="background-image:url('images/face.jpg')">
 
 <script>
 
-/* CARD GLIDE */
-
 window.addEventListener("scroll",function(){
 
 let scrolled=window.scrollY;
 
 document.querySelectorAll(".glide").forEach(function(el){
 
-let speed=.25;
+let speed=.18;
 
 el.style.transform=
 "translateY("+(scrolled*-speed)+"px)";
@@ -248,36 +199,6 @@ el.style.transform=
 });
 
 });
-
-/* HERO ZOOM */
-
-window.addEventListener("scroll",function(){
-
-let hero=document.querySelector(".hero-bg");
-
-let scroll=window.scrollY;
-
-hero.style.transform="scale("+(1.05+scroll*0.0002)+")";
-
-});
-
-/* CINEMATIC REVEAL */
-
-const reveals=document.querySelectorAll(".reveal");
-
-const observer=new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-entry.target.classList.add("active");
-}
-
-});
-
-},{threshold:.25});
-
-reveals.forEach(el=>observer.observe(el));
 
 </script>
 
